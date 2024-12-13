@@ -1,28 +1,30 @@
+import { REPLServer } from "node:repl"
+import logsets from "logsets"
 
 type AutoCompleteOptions = {
-    prompt:string, // 提示字符串
+    prompt?:string, // 提示字符串
     /**
      * 按下TAB键时调用，获取下一个单词，并自动补全
      * @param word  当前已经输入的单词
      * @returns 返回补全
      */
-    getNext: (word: string) => string
+    getNext?: (word: string) => string
     /**
      * 在当前输入行的前一行显示提示字符串，每一个字符串代表一个提示，之间用空格分隔
      * 并且使用灰色字体显示
      * @param word 
      * @returns 
      */
-    getTips: (word: string) => string[]
+    getTips?: (word: string) => string[]
 
-    getResult: (word: string) => void
-    history: string[]
+    getResult?: (word: string) => void
+    history?: string[]
 }
 
 
 /**
  * 
- * 使用readline库，实现自动补全
+ * 使用node:repl库，实现自动补全
  * 
  * 实现思路：
  * 1. 在输入时，按下TAB键时，调用getNext，将当前输入的单词作为参数,用来返回补全后的内容，如果返回空,则不会补全
@@ -36,70 +38,66 @@ type AutoCompleteOptions = {
  * @param prompt 
  * @param options 
  */
-export async function autocomplate(options:AutoCompleteOptions) {
-    const { prompt, getNext, getTips, getResult, history = [] } = Object.assign({}, options)
-    const readline = require('readline')
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    })
-    rl.on('line', (line) => {        
-        getResult(line)
-        history.push(line)
-        rl.prompt()
-    })
-    rl.on('close', () => {
-        process.exit(0)
-    })
-    rl.on('keypress', (str, key) => {
-        if (key.name === 'tab') {
-            const next = getNext(str)
-            if (next) {
-                rl.write(next)
+export function autocomplate(options?:AutoCompleteOptions) {
+        const { prompt=">", getNext, getTips, getResult, history=[] } = Object.assign({},options) as Required<AutoCompleteOptions>
+        const repl = require('repl')
+        const replServer = repl.start({ prompt, 
+            // eval: replEval ,
+            completer: (line: string) => {
+                const completions = '.help .error .exit .quit .q'.split(' ');
+                const hits = completions.filter((c) => c.startsWith(line));
+                // Show all completions if none found
+                return [hits.length ? hits : completions, line];
+            },
+            writer: (output:any) => {
+                return output
             }
-        }
-        if (key.name === 'up') {
-            const index = history.indexOf(str)
-            if (index > 0) {
-                rl.write(history[index - 1])
+        })
+        replServer.context.x =1 
+        // function replEval(cmd: string, context: any, filename: string, callback: (err: any, result: any) => void) {
+        //     callback(null, eval(cmd))
+        // }
+        let c:number =1 
+        // 每输入一个字符时触发的事件
+        process.stdin.on('keypress', (key:any, meta:any) => {
+            //{ sequence: 's', name: 's', ctrl: false, meta: false, shift: false }
+            if(key==='.'){ 
+                // 移移line里面\Suggestion:开始的所有字符
+                const line = replServer.line.split("\n")[0]
+                // s                 
+                replServer.line = line +logsets.colors.darkGray("log\nSuggestion: aaaaa bbbbb ccccc"+c++) 
+                replServer._refreshLine()
+                
+                // 刷新提示并移动光标到末尾
+                // const pos = replServer.getCursorPos()
+                // replServer.displayPrompt()
+                // setTimeout(() => {.
+                //     replServer._moveCursor(pos)
+                // })
+            
             }
-        }
-        if (key.name === 'down') {
-            const index = history.indexOf(str)
-            if (index < history.length - 1) {
-                rl.write(history[index + 1])
-            }            
-        }
-        if (key.name === 'backspace') {
-            rl.write('')
-        }
-        if (key.name === 'delete') {
-            rl.write('')
-        }
-        if (key.name === 'return') {
-            rl.write('\n')
-        }
-        if (key.name === 'escape') {
-            rl.write('\n')
-        }
-        if (key.name === 'left') {
-            rl.write('')
-        }
-        if (key.name === 'right') {
-            rl.write('')
-        }
-        if (key.name === 'home') {
-            rl.write('')
-        }
-        if (key.name === 'end') {
-            rl.write('')
-        }
+        })
+ 
+        replServer.defineCommand('exit', {
+            help: 'Say hello',
+            action(name:string) {
+              this.clearBufferedCommand();
+              console.log(`Hello, ${name}!`);
+              this.displayPrompt();
+            },
+          });
+          replServer.defineCommand('saybye', function saybye(this:REPLServer) {
+            console.log('Goodbye!');
+            this.close();
+          }); 
 
-    })
-    rl.on('line', (next) => {
-        if (next) {
-
-        }
-    })
-    rl.prompt()
 }
+
+
+
+
+autocomplate({
+    getNext(word: string) {
+        return word + 'abc'
+    }
+})
