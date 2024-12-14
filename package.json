@@ -1,6 +1,6 @@
 {
   "name": "prisma-shell",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "REPL for Prisma databases.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -17,8 +17,8 @@
     "db:push": "prisma db push",
     "db:seed": "prisma db seed",
     "build": "tsup",
-    "changeset":"changeset",
-    "release":"changeset version && changeset publish"
+    "changeset": "changeset",
+    "release": "changeset version && changeset publish"
   },
   "bin": {
     "prisma-shell": "dist/cli.js"
