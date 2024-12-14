@@ -2,8 +2,14 @@
   "name": "prisma-shell",
   "version": "0.0.1",
   "description": "REPL for Prisma databases.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "access": "public",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangfisher/prisma-shell.git"
+  },
   "scripts": {
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
@@ -13,13 +19,17 @@
     "build": "tsup",
     "changeset":"changeset",
     "release":"changeset version && changeset publish"
-
   },
   "bin": {
     "prisma-shell": "dist/cli.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "prisma",
+    "repl",
+    "shell",
+    "tools"
+  ],
+  "author": "zhangfisher",
   "license": "ISC",
   "devDependencies": {
     "@changesets/cli": "^2.27.10",
