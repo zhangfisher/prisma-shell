@@ -1,3 +1,3 @@
-export * from "./repl"
+export * from "./shell"
 
 

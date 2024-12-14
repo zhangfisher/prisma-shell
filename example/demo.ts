@@ -1,10 +1,14 @@
-import { AutoRepl } from './../src';
+import { PrismaShell } from '../src';
 
 
 
 const context = {
     user: {
         name: "zhangsan",
+        name2: "zhangsan2",
+        name3: "zhangsan3",
+        name4: "zhangsan4",
+        name5: "zhangsan5",
         age: 18,
         address: "beijing",
         phone: "123456789",
@@ -25,12 +29,15 @@ const context = {
     },
     hello() {
       return "Hello AutoRepl!"  
+    },
+    async getUser(){
+        return ["zhangsan", "lisi", "wangwu"]
     }
     
 }
 
 
-const repl = new AutoRepl({
+const repl = new PrismaShell({
     context
 })
 
