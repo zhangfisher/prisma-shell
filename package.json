@@ -29,6 +29,14 @@
     "shell",
     "tools"
   ],
+  "files": [
+    "dist",
+    "README.md",
+    "src",
+    "docs",
+    "example",
+    "prisma"
+  ],
   "author": "zhangfisher",
   "license": "ISC",
   "devDependencies": {
