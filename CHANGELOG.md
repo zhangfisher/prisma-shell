@@ -1,5 +1,11 @@
 # prisma-shell
 
+## 0.0.4
+
+### Patch Changes
+
+- 72d71c7: fix release
+
 ## 0.0.3
 
 ### Patch Changes
