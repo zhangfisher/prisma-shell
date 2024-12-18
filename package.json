@@ -1,6 +1,6 @@
 {
   "name": "prisma-shell",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "REPL for Prisma databases.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -28,6 +28,14 @@
     "repl",
     "shell",
     "tools"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "src",
+    "docs",
+    "example",
+    "prisma"
   ],
   "author": "zhangfisher",
   "license": "ISC",
