@@ -19,7 +19,7 @@ yarn add prisma-shell
 ```bash
 > prisma-shell
 ```
-![](./docs/logo.png)
+![](./docs/images/logo.png)
 
 ### Show modles
 
@@ -50,7 +50,7 @@ use `.list` to show table data.
 > .list user
 ```
 
-![](./docs/list-table.png)
+![](./docs/images/list-table.png)
 
 - **Show n page**
 
