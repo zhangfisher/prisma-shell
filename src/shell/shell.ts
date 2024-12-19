@@ -116,6 +116,10 @@ export class PrismaShell{
      * @param args 分页参数或字段列表
      */
     private _loadHistory(){
+        const historyFile = path.join(this.prismaPath,".history")
+        if(!fs.existsSync(historyFile)){
+            fs.writeFileSync(historyFile,"")
+        }
         this.replServer.setupHistory(path.join(this.prismaPath,".history"),(err)=>{
             if(err) console.error("无法加载历史记录:",err)
         })

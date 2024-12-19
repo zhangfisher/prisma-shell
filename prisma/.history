@@ -1,3 +1,5 @@
+.exit
+.models
 show(db.user.findMany())
 .list user 2 id,email
 .list  post
@@ -23,8 +25,6 @@ show(await $user.findMany())
 .list post 1
 .list user 2
 .list user 1
-.help
 。help
 prisma._runtimeDataModel.models.User
-prisma._runtimeDataModel
-prisma.userpost 10 title,content post 10 title
+prisma._runtimeDataModela.userpost 10 title,content post 10 title
