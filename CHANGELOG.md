@@ -1,5 +1,11 @@
 # prisma-shell
 
+## 0.0.7
+
+### Patch Changes
+
+- 2744662: fix error while .list mode isl empty
+
 ## 0.0.6
 
 ### Patch Changes
