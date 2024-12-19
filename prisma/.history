@@ -1,30 +1,3 @@
 .exit
-.models
-show(db.user.findMany())
-.list user 2 id,email
-.list  post
-.help
-await db.user.count()
-await db.user.cont()
-await db.user.findMany()
-prisma
-.models
-models
-modes
-show($user.findMany(),"email,name")
-show($user.findMany())
-await $user.findMany()
-$user
-user
-db
-.exit
-console.table([1,2,3])
-.list user
-show(await $user.findMany())
-.list post 2
-.list post 1
-.list user 2
-.list user 1
-。help
-prisma._runtimeDataModel.models.User
-prisma._runtimeDataModela.userpost 10 title,content post 10 title
+p
+exit
