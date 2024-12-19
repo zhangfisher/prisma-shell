@@ -1,5 +1,11 @@
 # prisma-shell
 
+## 0.0.5
+
+### Patch Changes
+
+- dc680aa: fix option <-p> argument missing
+
 ## 0.0.4
 
 ### Patch Changes
