@@ -1,5 +1,11 @@
 # prisma-shell
 
+## 0.0.6
+
+### Patch Changes
+
+- a1305c1: fix .history error
+
 ## 0.0.5
 
 ### Patch Changes
