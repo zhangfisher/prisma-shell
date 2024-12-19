@@ -1,3 +1,10 @@
+.list user 1
+.list user 3
+.list user 2
+.list user
+.list user 2
+.list user 1
+.list user
 .exit
 p
 exit

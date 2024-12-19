@@ -110,7 +110,7 @@ export class PrismaShell{
      *  show($user.findMany(),5,"fieldName,fieldName2,...")   只显示第5页,并且只显示字段
      *  show($user.findMany(),"fieldName,fieldName2,...") 
      * 
-     * - 如果返回的是一个标量，则使用console.log输出     * 
+     * - 如果返回的是一个标量，则使用console.log输出    
      * 
      * @param promise Promise对象或其他值
      * @param args 分页参数或字段列表

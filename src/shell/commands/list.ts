@@ -36,6 +36,11 @@ export default function ListModelCommand(shell:PrismaShell){
                             }),{}) : undefined
                     })
                     query.then(rows=>{
+                        if(!rows || rows.length === 0) {
+                            console.log('No records found');
+                            this.displayPrompt();
+                            return;
+                        }
                         const fields = fieldNames ? fieldNames.split(',') : Object.keys(rows[0]);
                         // 处理字符串字段截断
                         const truncatedRows = formatRows.call(this,rows);
